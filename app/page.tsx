@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { MessageCircle, Brain, Lightbulb, GitBranch } from 'lucide-react';
+"use client"
+
+import React, { useState } from "react"
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
+import { MessageCircle, Brain, Lightbulb, GitBranch } from "lucide-react"
 
 const SufferingAnalysisApp = () => {
-  const [query, setQuery] = useState('');
-  const [analysis, setAnalysis] = useState(null);
-  
+  const [query, setQuery] = useState("")
+  const [analysis, setAnalysis] = useState<null | {
+    type: string
+    scale: string
+    immediacy: string
+    connections: string[]
+    interventions: string[]
+  }>(null)
+
   const analyzeQuery = () => {
-    // This is a simplified demo - in reality, this would connect to a more sophisticated AI model
+    // Demo only — replace with real analysis later
     const demoAnalysis = {
-      type: 'Physical & Economic',
-      scale: 'Community',
-      immediacy: 'Urgent',
-      connections: ['Healthcare Access', 'Income Inequality', 'Social Support'],
+      type: "Physical & Economic",
+      scale: "Community",
+      immediacy: "Urgent",
+      connections: ["Healthcare Access", "Income Inequality", "Social Support"],
       interventions: [
-        'Expand local healthcare facilities',
-        'Implement job training programs',
-        'Create community support networks'
-      ]
-    };
-    setAnalysis(demoAnalysis);
-  };
+        "Expand local healthcare facilities",
+        "Implement job training programs",
+        "Create community support networks",
+      ],
+    }
+    setAnalysis(demoAnalysis)
+  }
 
   return (
-    <Card className="w-full max-w-4xl">
+    <Card className="w-full max-w-4xl mx-auto mt-10">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Suffering Analysis Assistant</CardTitle>
+        <CardTitle className="text-2xl font-bold">
+          Suffering Analysis Assistant
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           {/* Input Section */}
           <div className="space-y-2">
-            <label className="block text-sm font-medium">Describe the suffering-related situation:</label>
+            <label className="block text-sm font-medium">
+              Describe the suffering-related situation
+            </label>
             <div className="flex gap-2">
-              <textarea 
+              <textarea
                 className="w-full p-2 border rounded-md h-24"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={e => setQuery(e.target.value)}
                 placeholder="Example: How can we address food insecurity in urban areas?"
               />
             </div>
-            <button 
-              onClick={analyzeQuery}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Analyze
-            </button>
+            <div>
+              <button
+                onClick={analyzeQuery}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Analyze
+              </button>
+            </div>
           </div>
 
           {/* Analysis Results */}
@@ -85,7 +98,9 @@ const SufferingAnalysisApp = () => {
                 </div>
                 <ul className="list-disc list-inside">
                   {analysis.interventions.map((intervention, index) => (
-                    <li key={index} className="mb-1">{intervention}</li>
+                    <li key={index} className="mb-1">
+                      {intervention}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -94,7 +109,7 @@ const SufferingAnalysisApp = () => {
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default SufferingAnalysisApp;
+export default SufferingAnalysisApp
